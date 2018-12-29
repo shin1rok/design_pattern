@@ -10,4 +10,8 @@ module ArticleDecorator
   def title_link
     link_to title, self
   end
+
+  def rewrite_title
+    self.title = 'rewrite title'
+  end
 end

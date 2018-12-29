@@ -25,6 +25,10 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+    # ActiveDecoratorをコントローラで使う
+    # ※RSpec(テスト)で実行するための書き方なので、コントローラでActiveDecoratorを使うことは想定されていない
+    @article = ActiveDecorator::Decorator.instance.decorate(@article)
+    @article.rewrite_title
 
     respond_to do |format|
       if @article.save
